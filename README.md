@@ -44,59 +44,18 @@ ergogen . --clean true
 for f in output/cases/*.py; do python "$f"; done
 ```
 
+To regenerate only the case scripts (skipping points, outlines and PCBs), use `--cases_only`:
+
+```bash
+ergogen . --cases_only true
+```
+
 For example, `output/cases/left.py` exports:
 
 - `output/cases/left.step`
 - `output/cases/left.stl`
 
 An example config using these features is available at [Terence-1/simple34-2.0](https://github.com/Terence-1/simple34-2.0).
-
-Case parts support optional `fillet` and `chamfer` fields.
-By default, both options affect only the outermost top and bottom perimeter edges of that part.
-Inner hole edges can be targeted separately with `inner`.
-Use only one of `fillet` or `chamfer` on a given part.
-
-```yaml
-cases:
-  left:
-    - name: _wall
-      extrude: 6.6
-      fillet: 0.5
-```
-
-Use separate top and bottom values with either object syntax:
-
-```yaml
-fillet:
-  top: 0.5
-  bottom: 0.2
-```
-
-or array shorthand:
-
-```yaml
-chamfer: [0.5, 0.2] # [top, bottom]
-```
-
-Use `outer` and `inner` to target perimeter and hole edges separately:
-
-```yaml
-fillet:
-  outer:
-    top: 0.5
-    bottom: 0.2
-  inner:
-    top: 0.15
-    bottom: 0.15
-```
-
-The same shape works for `chamfer`:
-
-```yaml
-chamfer:
-  outer: 0.4
-  inner: [0.2, 0.1]
-```
 
 <br>
 <br>
